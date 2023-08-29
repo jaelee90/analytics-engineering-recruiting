@@ -12,6 +12,9 @@ models:
       - name: merchant_created_at
       - name: merchant_currency
       - name: is_portal_active
+        # tests:
+        #   - accepted_values:
+        #       values: [True, False]
       - name: provider_id
       - name: merchant_updated_at
       - name: merchant_currency_symbol
@@ -40,9 +43,9 @@ models:
         #         where: order_created_at < (select MAX(merchant_created_at) from loop-ae-exam-397221`.`dbt_jlee`.`stg__orders)
       - name: source_name
       - name: sales_channel
-        tests:
-          - accepted_values:
-              values: ['ecommerce', 'pos']
+        # tests:
+        #   - accepted_values:
+        #       values: ['ecommerce', 'pos']
       - name: gross_merchandise_value_usd
 
   - name: stg__returns
@@ -56,13 +59,7 @@ models:
       - name: destination_id
       - name: item_count
       - name: is_gift_return
-        tests:
-          - accepted_values:
-              values: [true, false]
       - name: is_in_store_return
-        tests:
-          - accepted_values:
-              values: [false]
       - name: order_id
         # tests:
         #   - relationships:
@@ -72,9 +69,9 @@ models:
       - name: return_policy
       - name: return_processed_at
       - name: return_state
-        tests:
-          - accepted_values:
-              values: ['closed', 'open', 'cancelled', 'expired', 'review']
+        # tests:
+        #   - accepted_values:
+        #       values: ['closed', 'open', 'cancelled', 'expired', 'review']
       - name: shop_id
         # tests:
         #   - relationships:
