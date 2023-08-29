@@ -20,4 +20,8 @@ select
   , exchange_value_usd
   , return_price_usd
   , total_shop_currency
+  , IFNULL(json_value(return_policy, '$.gift_cards_enabled'), 'unknown') as gift_cards_enabled
+  , IFNULL(json_value(return_policy, '$.instant_exchange_enabled'), 'unknown') as instant_exchange_enabled
+  , IFNULL(json_value(return_policy, '$.refunds_enabled'), 'unknown') as refunds_enabled
+  , json_value(return_policy, '$.keep_item_threshold') as keep_item_threshold
 from source_data

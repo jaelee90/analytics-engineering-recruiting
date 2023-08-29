@@ -81,3 +81,10 @@ models:
       - name: exchange_value_usd
       - name: return_price_usd
       - name: total_shop_currency
+      - name: gift_cards_enabled
+      - name: instant_exchange_enabled
+      - name: refunds_enabled
+      - name: keep_item_threshold
+
+  - name: stg__dates
+    description: "Staging model for dates to create dim_date."
