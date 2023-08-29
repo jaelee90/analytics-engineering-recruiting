@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: return_order_primary_key
+    description: >
+      "Model used to find information on returns."
+    columns:
+      - name: return_order_primary_key
+        description: "Primary key of table"
+        tests:
+          - unique
+          - not_null
+
+      

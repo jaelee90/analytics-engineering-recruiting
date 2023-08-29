@@ -1,0 +1,90 @@
+version: 2
+
+models:
+  - name: stg__merchants
+    description: "Staging model for merchants.csv."
+    columns:
+      - name: shop_id
+        description: "Primary key of table"
+        tests:
+          - unique
+          - not_null
+      - name: merchant_created_at
+      - name: merchant_currency
+      - name: is_portal_active
+        # tests:
+        #   - accepted_values:
+        #       values: [True, False]
+      - name: provider_id
+      - name: merchant_updated_at
+      - name: merchant_currency_symbol
+      - name: benchmark_vertical
+      - name: msm_market_segment
+
+  - name: stg__orders
+    description: "Staging model for orders.csv."
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: provider_id
+      - name: order_created_at
+      - name: fulfillment_status
+      - name: line_item_count
+      - name: order_processed_at
+      - name: processing_method
+      - name: shop_id
+        # tests:
+        #   - relationships:
+        #       to: ref('stg__merchants')
+        #       field: shop_id
+        #       config:
+        #         where: order_created_at < (select MAX(merchant_created_at) from loop-ae-exam-397221`.`dbt_jlee`.`stg__orders)
+      - name: source_name
+      - name: sales_channel
+        # tests:
+        #   - accepted_values:
+        #       values: ['ecommerce', 'pos']
+      - name: gross_merchandise_value_usd
+
+  - name: stg__returns
+    description: "Staging model for returns.csv."
+    columns:
+      - name: return_id
+        tests:
+            - unique
+            - not_null
+      - name: return_created_at
+      - name: destination_id
+      - name: item_count
+      - name: is_gift_return
+      - name: is_in_store_return
+      - name: order_id
+        # tests:
+        #   - relationships:
+        #       to: ref('stg__orders')
+        #       field: order_id
+      - name: provider_id
+      - name: return_policy
+      - name: return_processed_at
+      - name: return_state
+        # tests:
+        #   - accepted_values:
+        #       values: ['closed', 'open', 'cancelled', 'expired', 'review']
+      - name: shop_id
+        # tests:
+        #   - relationships:
+        #       to: ref('stg__merchants')
+        #       field: shop_id
+      - name: refund_value_usd
+      - name: exchange_value_usd
+      - name: return_price_usd
+      - name: total_shop_currency
+      - name: gift_cards_enabled
+      - name: instant_exchange_enabled
+      - name: refunds_enabled
+      - name: keep_item_threshold
+
+  - name: stg__dates
+    description: "Staging model for dates to create dim_date."
