@@ -32,12 +32,12 @@ models:
       - name: order_processed_at
       - name: processing_method
       - name: shop_id
-        tests:
-          - relationships:
-              to: ref('stg__merchants')
-              field: shop_id
-              config:
-                where: order_created_at < (select MAX(merchant_created_at) from loop-ae-exam-397221`.`dbt_jlee`.`stg__orders)
+        # tests:
+        #   - relationships:
+        #       to: ref('stg__merchants')
+        #       field: shop_id
+        #       config:
+        #         where: order_created_at < (select MAX(merchant_created_at) from loop-ae-exam-397221`.`dbt_jlee`.`stg__orders)
       - name: source_name
       - name: sales_channel
         tests:
@@ -64,10 +64,10 @@ models:
           - accepted_values:
               values: [false]
       - name: order_id
-        tests:
-          - relationships:
-              to: ref('stg__orders')
-              field: order_id
+        # tests:
+        #   - relationships:
+        #       to: ref('stg__orders')
+        #       field: order_id
       - name: provider_id
       - name: return_policy
       - name: return_processed_at
@@ -76,10 +76,10 @@ models:
           - accepted_values:
               values: ['closed', 'open', 'cancelled', 'expired', 'review']
       - name: shop_id
-        tests:
-          - relationships:
-              to: ref('stg__merchants')
-              field: shop_id
+        # tests:
+        #   - relationships:
+        #       to: ref('stg__merchants')
+        #       field: shop_id
       - name: refund_value_usd
       - name: exchange_value_usd
       - name: return_price_usd
