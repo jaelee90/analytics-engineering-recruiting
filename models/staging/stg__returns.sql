@@ -6,14 +6,14 @@ with source_data as (
 select
     return_id
   , return_created_at
-  , destination_id
+  , IFNULL(destination_id, -1) as destination_id
   , item_count
   , is_gift_return
   , is_in_store_return
   , order_id
   , provider_id
   , return_policy
-  , return_processed_at
+  , IFNULL(return_processed_at, '9999-12-31 23:59:59 UTC') as return_processed_at
   , return_state
   , shop_id
   , refund_value_usd
